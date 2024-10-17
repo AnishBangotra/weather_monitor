@@ -1,0 +1,26 @@
+.header {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    border-bottom: 6px solid #071a88;
+  }
+  
+  .city-button {
+    background-color: transparent; /* Transparent background */
+    padding: 15px 25px;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .city-button:hover {
+    background-color: rgba(66, 92, 99, 0.1); /* Slight background color on hover */
+  }
+  
