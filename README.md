@@ -1,8 +1,33 @@
-# Getting Started with Create React App
+# Build Instructions
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Real-Time Data Processing System for Weather Monitoring with Rollups and Aggregates
+
+A real-time data processing system to monitor weather conditions and provide
+summarized insights using rollups and aggregates. The system will utilize data from the
+OpenWeatherMap API (https://openweathermap.org/)
+
+## Dependencies
+List of dependencies required to run the project. Include versions if necessary.
+
+## Node.js (version >=18)
+## React (version 18.3.1)
+## axios (version 0.18.1)
+## ajv (version 7.2.4)
+
+# Installation
+1. Clone the repository
+```bash
+git clone https://github.com/AnishBangotra/weather_monitor.git
+cd yourproject
+```
+2. Install dependencies
+```bash
+npm install
+```
+  
+# Available Scripts
 
 In the project directory, you can run:
 
