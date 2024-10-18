@@ -4,10 +4,10 @@ import Header from './components/Header';
 import CityWeather from './components/CityWeather';
 import './index.css';  // Import global styles
 
-const cities = ['Delhi', 'Mumbai', 'Chennai', 'Bangalore', 'Kolkata', 'Hyderabad'];
+const cities = ['New Delhi', 'Mumbai', 'Chennai', 'Bangalore', 'Kolkata', 'Hyderabad'];
 
 function App() {
-  const [selectedCity, setSelectedCity] = useState('Delhi');
+  const [selectedCity, setSelectedCity] = useState('New Delhi');
 
   return (
     <div className="App">

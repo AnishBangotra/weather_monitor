@@ -70,10 +70,52 @@
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.historical-container {
-  font-size: 25px;
+.forecast-container {
+  border: 1px solid black;
+  flex: 2;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-container h2 {
   text-align: center;
+  font-size: 40px;
+  margin-bottom: 80px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+}
+
+.forecast-day {
+  display: flex;
+  justify-content: space-evenly;
+  /* border: 1px solid black; */
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.forecast-day h4 {
+  font-size: 25px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.forecast-day p {
+  font-size: 18px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.sun-times{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 10px 0;
+}
+
+.icon-small {
+  width: 40px;
+  height: 40px;
 }
 
 .bottom-details {

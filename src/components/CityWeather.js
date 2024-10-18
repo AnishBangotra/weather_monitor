@@ -1,9 +1,13 @@
 // src/components/CityWeather.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import sunrise from '../images/sunrise.png';
+import sunset from '../images/sunset.png';
 import '../index.css'
 
 const API_KEY = '32e7b1761f3c4fac0ab1d541ccf72250'; 
+
+const WeatherAPI_KEY = '3cde3d6f2094461fb11213637241710';
 
 const kelvinToCelsius = (kelvin) => (kelvin - 273.15).toFixed(2);
 
@@ -12,6 +16,7 @@ const ALERT_CHECK_INTERVAL = 60000
 
 const CityWeather = ({ selectedCity }) => {
   const [weather, setWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [temp, setTemp] = useState(null);
   const [alertMessages, setAlertMessages] = useState([]);
@@ -30,8 +35,17 @@ const CityWeather = ({ selectedCity }) => {
           `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&appid=${API_KEY}`
         );
 
+        const baseUrl = 'https://api.weatherapi.com/v1/forecast.json';
+        const forecastResponse = await axios.get(baseUrl, {
+          params: {
+            key: WeatherAPI_KEY,
+            q: selectedCity,             
+            days: 7,         
+          },
+        });
+        
+        const forecastData = forecastResponse?.data?.forecast?.forecastday || [];
         const data = response.data;
-        // console.log('dataaaaaaaaaaaaaaa', data);
         setWeather({
           city: selectedCity,
           weather: data.weather[0].main,
@@ -46,6 +60,7 @@ const CityWeather = ({ selectedCity }) => {
           timestamp: new Date(data.dt * 1000).toLocaleString(),
         });
         setTemp(data.main.temp)
+        setForecast(forecastData)
 
       } catch (err) {
         setError('Failed to fetch weather data. Please try again in a moment.');
@@ -167,7 +182,7 @@ const CityWeather = ({ selectedCity }) => {
   };
 
   if (loading) return <p style={{fontSize: '35px', fontFamily: 'monospace'}}>Loading data...</p>;
-  if (error) return <p style={{ color: 'red', fontSize: '25px', fontWeight: 'bold'}}>{error}</p>;
+  if (error) return <p style={{ color: 'red', fontSize: '35px', fontFamily: 'monospace' }}>{error}</p>;
 
   return (
     weather && (
@@ -228,7 +243,30 @@ const CityWeather = ({ selectedCity }) => {
             </div>
         </div>
       </div>
-      <div style={{marginTop: '150px'}} />
+      <div style={{marginTop: '60px'}} />
+      <div className='forecast-container'>
+          <h2>Daily Weather Forecast</h2>
+          {forecast.map((row, index) => (
+            <>
+            <div key={row.date} className="forecast-day">
+              <h4>{row.date}</h4>
+              <img src={row.day.condition.icon} alt={row.day.condition.text} />
+              <div className="sun-times">
+                <img src={sunrise} alt="Sunrise" className="icon-small" />
+                <p>{row.astro.sunrise}</p>
+              </div>
+              <div className='sun-times'>
+                <img src={sunset} alt="Sunset" className="icon-small" />
+                <p>{row.astro.sunset}</p>
+              </div>
+              <p><strong>Avg Temp:</strong> {row.day.avgtemp_c} °C</p>
+              <p><strong>Min Temp:</strong> {row.day.mintemp_c} °C</p>
+              <p><strong>Max Temp:</strong> {row.day.maxtemp_c} °C</p>
+            </div>
+            </>
+          ))}
+      </div>
+      <div style={{marginTop: '80px'}} />
       <div className='summary'>
          <h2>Weather Summary</h2>
          <p>
